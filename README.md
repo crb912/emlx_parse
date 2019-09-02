@@ -39,7 +39,8 @@ Then you can get all parts
 print(my_eml.header.subject)
 print(my_eml.header.from_)
 print(my_eml.header.to)
-print(my_eml.header.received.date_utc)
+print('sent date:', my_eml.header.date_utc)
+print('received date:', my_eml.header.received.date_utc)
 print(my_eml.header.cc)
 print(my_eml.header.bcc)
 

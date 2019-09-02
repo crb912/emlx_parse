@@ -41,7 +41,14 @@ class Emlx:
             # PLIST FORMAT: {'date-last-viewed': 1565157221,
             #                'date-received': 1565157221,
             #                'flags': 8623686721}
-            msg_plist = plistlib.loads(f.read())
+            plist_content = f.read()
+            try:
+                f.read()
+                msg_plist = plistlib.loads(plist_content)
+            except plistlib.InvalidFileException:
+                # old version
+                idx = plist_content.index(b'<plist')
+                msg_plist = plistlib.loads(plist_content[idx:])
             self._email_data = Email(msg_data, msg_plist, self._decode)
         self.header = self._email_data.get_header()
         self.body = self._email_data.get_body()
