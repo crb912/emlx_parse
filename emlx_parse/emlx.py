@@ -43,7 +43,6 @@ class Emlx:
             #                'flags': 8623686721}
             plist_content = f.read()
             try:
-                f.read()
                 msg_plist = plistlib.loads(plist_content)
             except plistlib.InvalidFileException:
                 # old version
